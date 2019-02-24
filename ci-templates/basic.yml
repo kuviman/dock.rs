@@ -1,0 +1,9 @@
+image: registry.gitlab.com/kuviman.rs/dock.rs
+
+before_script:
+  - source /opt/scripts/setup-git.sh
+  - source /opt/scripts/setup-ssh.sh
+
+test:
+  script:
+    - cargo test
