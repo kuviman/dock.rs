@@ -1,4 +1,4 @@
-image: registry.gitlab.com/kuviman.rs/dock.rs
+image: registry.gitlab.com/kuviman/dock.rs
 
 before_script:
   - source /opt/scripts/setup-git.sh
