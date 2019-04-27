@@ -7,9 +7,17 @@ variables:
 services:
   - docker:dind
 
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
 build:
   stage: build
   script:
     - docker build -t $CI_REGISTRY_IMAGE .
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker push $CI_REGISTRY_IMAGE
+
+build-web:
+  stage: build
+  script:
+    - docker build -f web.Dockerfile -t $CI_REGISTRY_IMAGE/web .
+    - docker push $CI_REGISTRY_IMAGE/web
