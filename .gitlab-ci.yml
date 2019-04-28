@@ -21,3 +21,9 @@ build-web:
   script:
     - docker build -f web.Dockerfile -t $CI_REGISTRY_IMAGE/web .
     - docker push $CI_REGISTRY_IMAGE/web
+
+build-windows:
+  stage: build
+  script:
+    - docker build -f windows.Dockerfile -t $CI_REGISTRY_IMAGE/windows .
+    - docker push $CI_REGISTRY_IMAGE/windows
