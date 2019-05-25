@@ -11,7 +11,7 @@ CARGO_WEB_URL="https://github.com/koute/cargo-web/releases/download/$CARGO_WEB_V
 
 
 echo "Downloading cargo-web from: $CARGO_WEB_URL"
-curl -L $CARGO_WEB_URL | gzip -d > cargo-web
+curl -LsS $CARGO_WEB_URL | gzip -d > cargo-web
 chmod +x cargo-web
 
 mkdir -p ~/.cargo/bin
