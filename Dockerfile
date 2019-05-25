@@ -3,7 +3,8 @@ RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config 
 COPY scripts /opt/scripts
 
 FROM default AS web
-RUN rustup target add wasm32-unknown-unknown && cargo install cargo-web
+COPY install-cargo-web.sh /tmp/
+RUN rustup target add wasm32-unknown-unknown && sh /tmp/install-cargo-web.sh && rm /tmp/install-cargo-web.sh
 
 FROM default AS windows
 RUN apt-get install -y mingw-w64
