@@ -13,17 +13,9 @@ before_script:
 build:
   stage: build
   script:
-    - docker build -t $CI_REGISTRY_IMAGE .
+    - docker build -t $CI_REGISTRY_IMAGE --target default .
+    - docker build -t $CI_REGISTRY_IMAGE/web --target web .
+    - docker build -t $CI_REGISTRY_IMAGE/windows --target windows .
     - docker push $CI_REGISTRY_IMAGE
-
-build-web:
-  stage: build
-  script:
-    - docker build -f web.Dockerfile -t $CI_REGISTRY_IMAGE/web .
     - docker push $CI_REGISTRY_IMAGE/web
-
-build-windows:
-  stage: build
-  script:
-    - docker build -f windows.Dockerfile -t $CI_REGISTRY_IMAGE/windows .
     - docker push $CI_REGISTRY_IMAGE/windows
