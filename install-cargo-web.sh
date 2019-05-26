@@ -14,5 +14,5 @@ echo "Downloading cargo-web from: $CARGO_WEB_URL"
 curl -LsS $CARGO_WEB_URL | gzip -d > cargo-web
 chmod +x cargo-web
 
-mkdir -p ~/.cargo/bin
-mv cargo-web ~/.cargo/bin
+mkdir -p /usr/local/cargo/bin
+mv cargo-web /usr/local/cargo/bin/
