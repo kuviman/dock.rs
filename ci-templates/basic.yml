@@ -1,6 +1,17 @@
 image: registry.gitlab.com/kuviman/dock.rs
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  CARGO_HOME: $CI_PROJECT_DIR/.cache/.cargo
+  CARGO_TARGET_DIR: $CI_PROJECT_DIR/.cache/.cargo-target
+
+cache:
+  key: "$CI_COMMIT_REF_SLUG-$CI_JOB_NAME"
+  paths:
+    - .cache
+
 before_script:
+  - mkdir -p .cache
   - source /opt/scripts/setup-git.sh
   - source /opt/scripts/setup-ssh.sh
 
