@@ -11,6 +11,7 @@ cat > ~/.ssh/config <<"EOF"
 Host *
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
+LogLevel ERROR
 EOF
 chmod 400 ~/.ssh/config
 
