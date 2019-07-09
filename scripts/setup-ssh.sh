@@ -16,6 +16,6 @@ EOF
 chmod 400 ~/.ssh/config
 
 if [ -n "$SSH_KEY" ]; then
-	echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+	echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null 2> /dev/null
 	echo SSH key added
 fi
