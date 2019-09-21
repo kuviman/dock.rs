@@ -1,5 +1,5 @@
 FROM rust:slim AS default
-RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config libssl-dev make libasound2-dev
+RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config libssl-dev make libasound2-dev libgtk-3-dev
 COPY scripts /opt/scripts
 
 FROM default AS web
