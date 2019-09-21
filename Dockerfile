@@ -10,3 +10,10 @@ FROM default AS windows
 RUN apt-get install -y mingw-w64
 RUN rustup target add x86_64-pc-windows-gnu
 COPY windows.cargo-config $HOME/.cargo/config
+
+FROM default as macos
+COPY install-osxcross /tmp
+RUN sh /tmp/install-osxcross
+ENV PATH=$PATH:/tmp/osxcross/target/bin
+RUN rustup target add x86_64-apple-darwin
+COPY macos.cargo-config $HOME/.cargo/config
