@@ -12,7 +12,7 @@ RUN rustup target add x86_64-pc-windows-gnu
 COPY windows.cargo-config $HOME/.cargo/config
 
 FROM default as macos
-RUN apt-get install -y clang
+RUN apt-get install -y clang libxml2-dev
 COPY install-osxcross.sh /tmp
 RUN sh /tmp/install-osxcross.sh
 ENV PATH=$PATH:/tmp/osxcross/target/bin
