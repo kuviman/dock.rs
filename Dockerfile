@@ -3,6 +3,8 @@ RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config 
 COPY scripts /opt/scripts
 
 FROM default AS musl
+RUN apt-get install -y musl
+ENV PKG_CONFIG_ALLOW_CROSS=1
 RUN rustup target add x86_64-unknown-linux-musl
 
 FROM default AS web
