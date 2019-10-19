@@ -2,6 +2,9 @@ FROM rust:slim AS default
 RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config libssl-dev make libasound2-dev libgtk-3-dev
 COPY scripts /opt/scripts
 
+FROM default AS musl
+RUN rustup target add x86_64-unknown-linux-musl
+
 FROM default AS web
 COPY install-cargo-web.sh /tmp/
 RUN rustup target add wasm32-unknown-unknown && bash /tmp/install-cargo-web.sh && rm /tmp/install-cargo-web.sh

@@ -14,8 +14,10 @@ build:
   stage: build
   script:
     - docker build -t $CI_REGISTRY_IMAGE --target default .
+    - docker build -t $CI_REGISTRY_IMAGE/musl --target musl .
     - docker build -t $CI_REGISTRY_IMAGE/web --target web .
     - docker build -t $CI_REGISTRY_IMAGE/windows --target windows .
     - docker push $CI_REGISTRY_IMAGE
+    - docker push $CI_REGISTRY_IMAGE/musl
     - docker push $CI_REGISTRY_IMAGE/web
     - docker push $CI_REGISTRY_IMAGE/windows
