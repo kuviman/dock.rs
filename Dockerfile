@@ -1,4 +1,4 @@
-FROM rust:slim AS default
+FROM rust:slim-stretch AS default
 RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config libssl-dev make cmake libasound2-dev libgtk-3-dev jq
 COPY scripts /opt/scripts
 
