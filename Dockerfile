@@ -21,7 +21,9 @@ RUN cp /usr/x86_64-w64-mingw32/lib/crt2.o /usr/local/rustup/toolchains/*-x86_64-
     cp /usr/x86_64-w64-mingw32/lib/libmsvcrt.a /usr/local/rustup/toolchains/*-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-pc-windows-gnu/lib/
 COPY windows.cargo-config $HOME/.cargo/config
 
-FROM default as macos
+FROM rust:slim AS default
+RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config libssl-dev make cmake libasound2-dev libgtk-3-dev jq
+COPY scripts /opt/scripts
 RUN apt-get install -y clang libxml2-dev
 COPY install-osxcross.sh /tmp
 RUN sh /tmp/install-osxcross.sh
