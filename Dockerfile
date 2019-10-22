@@ -11,7 +11,9 @@ FROM default AS web
 COPY install-cargo-web.sh /tmp/
 RUN rustup target add wasm32-unknown-unknown && bash /tmp/install-cargo-web.sh && rm /tmp/install-cargo-web.sh
 
-FROM default AS windows
+FROM rust:slim AS windows
+RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config libssl-dev make cmake libasound2-dev libgtk-3-dev jq
+COPY scripts /opt/scripts
 RUN apt-get install -y mingw-w64
 RUN rustup target add x86_64-pc-windows-gnu
 # https://github.com/msys2/MINGW-packages/issues/4133, https://github.com/rust-lang/rust/issues/47048
