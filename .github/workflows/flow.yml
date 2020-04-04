@@ -7,10 +7,13 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: docker/build-push-action@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build & Push
+        uses: docker/build-push-action@v1
         with:
           repository: kuviman/dock.rs
+          tags: latest
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
   other:
@@ -20,10 +23,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: main
     steps:
-      - uses: actions/checkout@v2
-      - uses: docker/build-push-action@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build & Push
+        uses: docker/build-push-action@v1
         with:
           repository: kuviman/dock.rs/${{ matrix.type }}
+          tags: latest
           path: ${{ matrix.type }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
