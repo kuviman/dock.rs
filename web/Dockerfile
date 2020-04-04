@@ -1,4 +1,5 @@
-FROM ${MAIN_IMAGE}
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 RUN rustup target add wasm32-unknown-unknown
 COPY install-cargo-web.sh /tmp/

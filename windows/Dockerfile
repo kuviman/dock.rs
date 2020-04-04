@@ -1,4 +1,5 @@
-FROM ${MAIN_IMAGE}
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config libssl-dev make cmake libasound2-dev libgtk-3-dev jq
 COPY scripts /opt/scripts

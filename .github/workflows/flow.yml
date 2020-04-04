@@ -4,7 +4,7 @@ on:
       - master
 
 env:
-  MAIN_IMAGE: kuviman/dock.rs
+  IMAGE: kuviman/dock.rs
 
 jobs:
   main:
@@ -15,8 +15,8 @@ jobs:
       - name: Build & Push
         uses: docker/build-push-action@v1
         with:
-          repository: ${{ env.MAIN_IMAGE }}
-          tags: latest
+          repository: ${{ env.IMAGE }}
+          tags: base, linux, latest
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
   other:
@@ -31,8 +31,9 @@ jobs:
       - name: Build & Push
         uses: docker/build-push-action@v1
         with:
-          repository: ${{ env.MAIN_IMAGE }}/${{ matrix.type }}
-          tags: latest
+          repository: ${{ env.IMAGE }}
+          tags: ${{ matrix.type }}
           path: ${{ matrix.type }}
+          build_args: BASE_IMAGE=${{ env.IMAGE }}:base
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}

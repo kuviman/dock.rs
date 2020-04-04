@@ -1,4 +1,5 @@
-FROM ${MAIN_IMAGE}
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 RUN apt-get install -y clang libxml2-dev
 COPY install-osxcross.sh /tmp
