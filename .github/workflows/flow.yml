@@ -3,6 +3,9 @@ on:
     branches:
       - master
 
+env:
+  MAIN_IMAGE: kuviman/dock.rs
+
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -12,7 +15,7 @@ jobs:
       - name: Build & Push
         uses: docker/build-push-action@v1
         with:
-          repository: kuviman/dock.rs
+          repository: ${{ env.MAIN_IMAGE }}
           tags: latest
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
@@ -28,7 +31,7 @@ jobs:
       - name: Build & Push
         uses: docker/build-push-action@v1
         with:
-          repository: kuviman/dock.rs/${{ matrix.type }}
+          repository: ${{ env.MAIN_IMAGE }}/${{ matrix.type }}
           tags: latest
           path: ${{ matrix.type }}
           username: ${{ secrets.DOCKER_USERNAME }}
