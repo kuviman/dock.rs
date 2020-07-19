@@ -1,7 +1,6 @@
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
-RUN apt-get update && apt-get install -y ssh git curl wget zip unzip pkg-config libssl-dev make cmake libasound2-dev libgtk-3-dev jq
 RUN apt-get install -y mingw-w64
 RUN rustup target add x86_64-pc-windows-gnu
 # https://github.com/msys2/MINGW-packages/issues/4133, https://github.com/rust-lang/rust/issues/47048
